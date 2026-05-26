@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易笔记分享平台</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="brand-wrap">
+            <h1><a href="{{ url_for('index') }}">简易笔记分享平台</a></h1>
+            <p>轻松发布笔记、点赞评论、分享学习心得</p>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+[2026-05-26 16:50:46] [Middleware] 服务已启动 127.0.0.1:5001
+[2026-05-26 16:50:46] [Middleware] 新节点加入: ('127.0.0.1', 52565)
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52565) 订阅主题: note/publish
+[2026-05-26 16:50:46] [Middleware] 新节点加入: ('127.0.0.1', 52566)
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52566) 订阅主题: note/like
+[2026-05-26 16:50:46] [Middleware] 新节点加入: ('127.0.0.1', 52567)
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52565) 订阅主题: note/publish
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52566) 订阅主题: note/comment
+[2026-05-26 16:50:46] [Middleware] 新节点加入: ('127.0.0.1', 52568)
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52567) 订阅主题: note/like
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52566) 订阅主题: note/delete
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52568) 订阅主题: query/request
+[2026-05-26 16:50:46] [Middleware] 新节点加入: ('127.0.0.1', 52569)
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52567) 订阅主题: note/comment
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52566) 订阅主题: note/like
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52568) 订阅主题: query/request
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52567) 订阅主题: note/like
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52566) 订阅主题: note/comment
+[2026-05-26 16:50:46] [Middleware] 节点 ('127.0.0.1', 52567) 订阅主题: note/comment
+[2026-05-26 16:50:51] [Middleware] 新节点加入: ('127.0.0.1', 51947)
+[2026-05-26 16:50:51] [Middleware] 节点 ('127.0.0.1', 51947) 订阅主题: query/response
+[2026-05-26 16:50:51] [Middleware] 接收到查询请求放入队列 - ID: 1779785451.0829263, 类型: get_note
+[2026-05-26 16:50:51] [Middleware] 分发查询请求 - 主题: query/request, 内容: {'query_id': '1779785451.0829263', 'query_type': 'get_note', 'params': {'note_id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8'}}
+[2026-05-26 16:50:51] [Middleware] 接收到消息 - 主题: query/response, 内容: {'status': 'success', 'data': {'id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8', 'title': '123', 'content': '123', 'author': 'guest', 'created_at': None, 'likes': 5, 'comments': 0, 'heat': 19, 'status': 'approved'}, 'query_id': '1779785451.0829263'}
+[2026-05-26 16:50:51] [Middleware] 分发消息 - 主题: query/response, 内容: {'status': 'success', 'data': {'id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8', 'title': '123', 'content': '123', 'author': 'guest', 'created_at': None, 'likes': 5, 'comments': 0, 'heat': 19, 'status': 'approved'}, 'query_id': '1779785451.0829263'}
+[2026-05-26 16:50:51] [Middleware] 接收到查询请求放入队列 - ID: 1779785451.3110576, 类型: get_comments
+[2026-05-26 16:50:51] [Middleware] 分发查询请求 - 主题: query/request, 内容: {'query_id': '1779785451.3110576', 'query_type': 'get_comments', 'params': {'note_id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8'}}
+[2026-05-26 16:50:51] [Middleware] 接收到消息 - 主题: query/response, 内容: {'status': 'success', 'data': [], 'query_id': '1779785451.3110576'}
+[2026-05-26 16:50:51] [Middleware] 分发消息 - 主题: query/response, 内容: {'status': 'success', 'data': [], 'query_id': '1779785451.3110576'}
+[2026-05-26 16:50:51] [Middleware] 接收到查询请求放入队列 - ID: 1779785451.5346303, 类型: get_like_count
+[2026-05-26 16:50:51] [Middleware] 分发查询请求 - 主题: query/request, 内容: {'query_id': '1779785451.5346303', 'query_type': 'get_like_count', 'params': {'note_id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8'}}
+[2026-05-26 16:50:51] [Middleware] 接收到消息 - 主题: query/response, 内容: {'status': 'success', 'data': 5, 'query_id': '1779785451.5346303'}
+[2026-05-26 16:50:51] [Middleware] 分发消息 - 主题: query/response, 内容: {'status': 'success', 'data': 5, 'query_id': '1779785451.5346303'}
+[2026-05-26 16:50:54] [Middleware] 新节点加入: ('127.0.0.1', 62951)
+[2026-05-26 16:50:54] [Middleware] 接收到消息 - 主题: note/delete, 内容: {'note_id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8'}
+[2026-05-26 16:50:54] [Middleware] 分发消息 - 主题: note/delete, 内容: {'note_id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8'}
+[2026-05-26 16:50:54] [Middleware] 接收到查询请求放入队列 - ID: 1779785454.5450428, 类型: get_notes
+[2026-05-26 16:50:54] [Middleware] 分发查询请求 - 主题: query/request, 内容: {'query_id': '1779785454.5450428', 'query_type': 'get_notes', 'params': {}}
+[2026-05-26 16:50:54] [Middleware] 接收到消息 - 主题: query/response, 内容: {'status': 'success', 'data': [{'id': '4cbd6681-8b0d-4de1-ada9-9bf2900a8573', 'title': '111', 'content': '1111', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}, {'id': 'f4e8c84e-0b91-4105-a36e-701623db2646', 'title': '123', 'content': '123', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}, {'id': 'eca01e10-0c3d-4ca4-b3c2-a47b300bc9dd', 'title': '123', 'content': '333', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}], 'query_id': '1779785454.5450428'}
+[2026-05-26 16:50:54] [Middleware] 分发消息 - 主题: query/response, 内容: {'status': 'success', 'data': [{'id': '4cbd6681-8b0d-4de1-ada9-9bf2900a8573', 'title': '111', 'content': '1111', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}, {'id': 'f4e8c84e-0b91-4105-a36e-701623db2646', 'title': '123', 'content': '123', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}, {'id': 'eca01e10-0c3d-4ca4-b3c2-a47b300bc9dd', 'title': '123', 'content': '333', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}], 'query_id': '1779785454.5450428'}

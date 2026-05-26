@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="note-detail">
+    <h2>{{ note['title'] }}</h2>
+    <div class="meta">
+        <span>作者：{{ note['author'] }}</span>
+        <span>点赞：{{ likes }}</span>
+        <span>评论：{{ note['comments'] }}</span>
+    </div>
+    <div class="content">{{ note['content'] }}</div>
+    <div class="action-group">
+        <button type="button" class="button button-back" onclick="window.location.href = '{{ url_for('index') }}';">返回</button>
+        <form method="post" action="{{ url_for('like_note', note_id=note['id']) }}">
+            <input type="hidden" name="user_id" value="guest">
+            <button type="submit">点赞</button>
+        </form>
+        <form method="post" action="{{ url_for('delete_note_route', note_id=note['id']) }}" onsubmit="return confirm('确认删除该笔记及其所有评论和点赞记录吗？');">
+            <button type="submit" class="button delete-button">删除笔记</button>
+        </form>
+    </div>
+    <section class="comment-area">
+        <h3>评论区</h3>
+        <form method="post" action="{{ url_for('comment_note', note_id=note['id']) }}">
+            <input type="hidden" name="user_id" value="guest">
+            <textarea name="comment_text" rows="4" required></textarea>
+            <button type="submit">提交评论</button>
+        </form>
+        {% for comment in comments %}
+        <div class="comment-card">
+            <div>{{ comment['content'] }}</div>
+            <div class="comment-meta">用户：{{ comment['user_id'] }} | {{ comment['created_at'] }}</div>
+        </div>
+        {% else %}
+        <p>暂无评论，快来发表第一条评论。</p>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

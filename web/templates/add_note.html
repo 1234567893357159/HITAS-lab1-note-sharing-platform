@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>添加新笔记</h2>
+<form method="post">
+    <label>标题</label>
+    <input type="text" name="title" required>
+    <label>作者</label>
+    <input type="text" name="author" value="guest" required>
+    <label>内容</label>
+    <textarea name="content" rows="8" required></textarea>
+    <button type="submit">发布笔记</button>
+    <button type="button" class="button" onclick="window.history.back();">返回上一个界面</button>
+</form>
+{% endblock %}

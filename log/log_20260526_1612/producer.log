@@ -1,0 +1,7 @@
+[2026-05-26 16:13:01] [Producer] 已连接到中间件 127.0.0.1:5001
+[2026-05-26 16:13:01] [Producer] 已发送消息 - 主题: note/publish, 内容: {'note_id': 'f5ccadc4-9790-4523-8d87-fe7fa42b9ea3', 'title': '888', 'content': '888', 'author': 'guest', 'created_at': None}
+[2026-05-26 16:13:05] [Producer] 已发送消息 - 主题: note/like, 内容: {'note_id': 'f5ccadc4-9790-4523-8d87-fe7fa42b9ea3', 'user_id': 'guest'}
+[2026-05-26 16:13:07] [Producer] 已发送消息 - 主题: note/like, 内容: {'note_id': 'f5ccadc4-9790-4523-8d87-fe7fa42b9ea3', 'user_id': 'guest'}
+[2026-05-26 16:13:07] [Producer] 已发送消息 - 主题: note/like, 内容: {'note_id': 'f5ccadc4-9790-4523-8d87-fe7fa42b9ea3', 'user_id': 'guest'}
+[2026-05-26 16:13:07] [Producer] 已发送消息 - 主题: note/like, 内容: {'note_id': 'f5ccadc4-9790-4523-8d87-fe7fa42b9ea3', 'user_id': 'guest'}
+[2026-05-26 16:13:08] [Producer] 已发送消息 - 主题: note/like, 内容: {'note_id': 'f5ccadc4-9790-4523-8d87-fe7fa42b9ea3', 'user_id': 'guest'}

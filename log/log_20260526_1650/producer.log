@@ -1,0 +1,7 @@
+[2026-05-26 16:50:46] [Producer] 已连接到中间件 127.0.0.1:5001
+[2026-05-26 16:50:51] [Producer] 已发送消息 - 主题: query/response, 内容: {'status': 'success', 'data': {'id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8', 'title': '123', 'content': '123', 'author': 'guest', 'created_at': None, 'likes': 5, 'comments': 0, 'heat': 19, 'status': 'approved'}, 'query_id': '1779785451.0829263'}
+[2026-05-26 16:50:51] [Producer] 已发送消息 - 主题: query/response, 内容: {'status': 'success', 'data': [], 'query_id': '1779785451.3110576'}
+[2026-05-26 16:50:51] [Producer] 已发送消息 - 主题: query/response, 内容: {'status': 'success', 'data': 5, 'query_id': '1779785451.5346303'}
+[2026-05-26 16:50:54] [Producer] 已连接到中间件 127.0.0.1:5001
+[2026-05-26 16:50:54] [Producer] 已发送消息 - 主题: note/delete, 内容: {'note_id': 'a16394cd-45b4-45aa-b129-b92a54fd46a8'}
+[2026-05-26 16:50:54] [Producer] 已发送消息 - 主题: query/response, 内容: {'status': 'success', 'data': [{'id': '4cbd6681-8b0d-4de1-ada9-9bf2900a8573', 'title': '111', 'content': '1111', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}, {'id': 'f4e8c84e-0b91-4105-a36e-701623db2646', 'title': '123', 'content': '123', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}, {'id': 'eca01e10-0c3d-4ca4-b3c2-a47b300bc9dd', 'title': '123', 'content': '333', 'author': 'guest', 'created_at': None, 'likes': 0, 'comments': 0, 'heat': 0, 'status': 'approved'}], 'query_id': '1779785454.5450428'}

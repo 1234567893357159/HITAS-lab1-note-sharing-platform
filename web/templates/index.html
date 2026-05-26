@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="toolbar">
+    <a class="button" href="{{ url_for('add_note') }}">添加笔记</a>
+</div>
+<div class="note-list">
+    {% for note in notes %}
+    <div class="note-card">
+        <h2><a href="{{ url_for('note_detail', note_id=note['id']) }}">{{ note['title'] }}</a></h2>
+        <p>{{ note['content'][:120] }}{% if note['content']|length > 120 %}...{% endif %}</p>
+        <div class="meta">
+            <span>作者：{{ note['author'] }}</span>
+            <span>点赞：{{ note['likes'] }}</span>
+            <span>评论：{{ note['comments'] }}</span>
+        </div>
+    </div>
+    {% else %}
+    <p>当前没有笔记，可点击“添加笔记”发布新内容。</p>
+    {% endfor %}
+</div>
+{% endblock %}
