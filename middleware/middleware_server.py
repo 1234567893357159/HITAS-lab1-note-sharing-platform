@@ -22,6 +22,7 @@ from .message import Message
 from .message_queue import MessageQueue
 from .topic_router import TopicRouter
 from utils.logger import ComponentLogger
+from utils.traffic_monitor import TrafficMonitor
 
 
 class MiddlewareServer:
@@ -52,6 +53,8 @@ class MiddlewareServer:
         self.dispatcher_thread = None           # 消息分发线程
         self.query_dispatcher_thread = None     # 查询分发线程
         self.logger = ComponentLogger.get_logger("middleware")  # 日志记录器
+        self.traffic_monitor = TrafficMonitor()  # 流量监控器
+        self.traffic_monitor.initialize()
 
     def start_server(self):
         """
@@ -95,6 +98,7 @@ class MiddlewareServer:
                 # 接受连接
                 client_socket, addr = self.server_socket.accept()
                 self.logger.log(f"[Middleware] 新节点加入: {addr}")
+                self.traffic_monitor.record_connection_open()
             except OSError:
                 # 服务器关闭时会抛出异常
                 break
@@ -143,6 +147,7 @@ class MiddlewareServer:
                         }
                         self.logger.log(f"[Middleware] 接收到查询请求放入队列 - ID: {query_id}, 类型: {query_type}")
                         self.query_queue.put_message(Message("query/request", query_msg))
+                        self.traffic_monitor.record_query_received(query_type)
                     
                     elif msg_type == "subscribe":
                         # 处理订阅请求
@@ -154,6 +159,7 @@ class MiddlewareServer:
                         message = Message(payload["topic"], payload["content"])
                         self.logger.log(f"[Middleware] 接收到消息 - 主题: {message.topic}, 内容: {message.content}")
                         self.msg_queue.put_message(message)
+                        self.traffic_monitor.record_message_received(message.topic)
         finally:
             # 清理连接
             self._cleanup_socket(client_socket, addr)
@@ -165,13 +171,17 @@ class MiddlewareServer:
         从消息队列获取消息，路由到所有订阅者
         """
         while self.is_running:
+            # 记录队列深度
+            self.traffic_monitor.record_queue_depth(len(self.msg_queue.queue))
+            
             message = self.msg_queue.get_message()
             if message:
                 self.logger.log(f"[Middleware] 分发消息 - 主题: {message.topic}, 内容: {message.content}")
                 subscribers = self.router.get_subscribers(message.topic)
                 self.send_to_consumers(subscribers, message)
+                self.traffic_monitor.record_message_dispatched(message.topic, message.message_id)
             else:
-                time.sleep(0.1)
+                time.sleep(0.05)
 
     def dispatch_queries(self):
         """
@@ -180,13 +190,18 @@ class MiddlewareServer:
         从查询队列获取查询请求，路由到订阅了 query/request 的消费者
         """
         while self.is_running:
+            # 记录查询队列深度
+            self.traffic_monitor.record_queue_depth(len(self.query_queue.queue))
+            
             message = self.query_queue.get_message()
             if message:
                 self.logger.log(f"[Middleware] 分发查询请求 - 主题: {message.topic}, 内容: {message.content}")
                 subscribers = self.router.get_subscribers(message.topic)
                 self.send_to_consumers(subscribers, message)
+                query_type = message.content.get("query_type", "unknown")
+                self.traffic_monitor.record_query_dispatched(query_type)
             else:
-                time.sleep(0.1)
+                time.sleep(0.05)
 
     def handle_query(self, query_type, params):
         """
@@ -239,6 +254,7 @@ class MiddlewareServer:
         except Exception:
             pass
         self.logger.log(f"[Middleware] 节点退出: {addr}")
+        self.traffic_monitor.record_connection_close()
 
     def start_dispatcher(self):
         """
