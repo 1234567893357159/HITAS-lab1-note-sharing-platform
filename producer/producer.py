@@ -62,7 +62,6 @@ class MessageProducer:
             message = Message(topic, content)
             # 发送消息（JSON 格式 + 换行符分隔）
             self.socket.sendall((message.to_json() + "\n").encode("utf-8"))
-            self.logger.log(f"[Producer] 已发送消息 - 主题: {topic}, 内容: {content}")
         except Exception as e:
             # 发送失败，记录日志并关闭连接
             self.logger.log(f"[Producer] 发送消息失败: {e}")

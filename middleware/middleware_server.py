@@ -145,19 +145,16 @@ class MiddlewareServer:
                             "query_type": query_type,
                             "params": params
                         }
-                        self.logger.log(f"[Middleware] 接收到查询请求放入队列 - ID: {query_id}, 类型: {query_type}")
                         self.query_queue.put_message(Message("query/request", query_msg))
                         self.traffic_monitor.record_query_received(query_type)
                     
                     elif msg_type == "subscribe":
                         # 处理订阅请求
-                        self.logger.log(f"[Middleware] 节点 {addr} 订阅主题: {payload['topic']}")
                         self.router.subscribe(payload["topic"], client_socket)
                     
                     elif msg_type == "publish" or ("topic" in payload and "content" in payload):
                         # 处理发布消息
                         message = Message(payload["topic"], payload["content"])
-                        self.logger.log(f"[Middleware] 接收到消息 - 主题: {message.topic}, 内容: {message.content}")
                         self.msg_queue.put_message(message)
                         self.traffic_monitor.record_message_received(message.topic)
         finally:
@@ -176,7 +173,6 @@ class MiddlewareServer:
             
             message = self.msg_queue.get_message()
             if message:
-                self.logger.log(f"[Middleware] 分发消息 - 主题: {message.topic}, 内容: {message.content}")
                 subscribers = self.router.get_subscribers(message.topic)
                 self.send_to_consumers(subscribers, message)
                 self.traffic_monitor.record_message_dispatched(message.topic, message.message_id)
@@ -195,7 +191,6 @@ class MiddlewareServer:
             
             message = self.query_queue.get_message()
             if message:
-                self.logger.log(f"[Middleware] 分发查询请求 - 主题: {message.topic}, 内容: {message.content}")
                 subscribers = self.router.get_subscribers(message.topic)
                 self.send_to_consumers(subscribers, message)
                 query_type = message.content.get("query_type", "unknown")
@@ -273,6 +268,8 @@ class MiddlewareServer:
         :param subscribers: 订阅者 socket 列表
         :param message: Message 对象
         """
+        if subscribers:
+            self.logger.log(f"[Middleware] 发送消息类型: {message.topic} 给 {len(subscribers)} 个订阅者")
         for subscriber in subscribers:
             try:
                 subscriber.sendall((message.to_json() + "\n").encode("utf-8"))
