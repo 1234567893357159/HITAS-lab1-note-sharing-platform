@@ -1,7 +1,7 @@
 import os
 import sys
 import uuid
-from flask import Flask, render_template, request, redirect, url_for, make_response
+from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if BASE_DIR not in sys.path:
@@ -139,5 +139,91 @@ def create_app():
         resp.headers["Pragma"] = "no-cache"
         resp.headers["Expires"] = "0"
         return resp
+
+    # ========== API 接口（供前端 JavaScript 调用）==========
+    @app.route("/api/notes", methods=["GET"])
+    def api_get_notes():
+        """
+        获取所有笔记列表 - API 接口
+        前端 JavaScript 可以通过 fetch('/api/notes') 调用
+        """
+        result = query_client.query("get_notes")
+        return jsonify(result)
+
+    @app.route("/api/note/<note_id>", methods=["GET"])
+    def api_get_note(note_id):
+        """
+        获取单个笔记详情 - API 接口
+        """
+        result = query_client.query("get_note", {"note_id": note_id})
+        return jsonify(result)
+
+    @app.route("/api/note/<note_id>/comments", methods=["GET"])
+    def api_get_comments(note_id):
+        """
+        获取笔记评论列表 - API 接口
+        """
+        result = query_client.query("get_comments", {"note_id": note_id})
+        return jsonify(result)
+
+    @app.route("/api/note/<note_id>/likes", methods=["GET"])
+    def api_get_like_count(note_id):
+        """
+        获取笔记点赞数 - API 接口
+        """
+        result = query_client.query("get_like_count", {"note_id": note_id})
+        return jsonify(result)
+
+    @app.route("/api/note", methods=["POST"])
+    def api_add_note():
+        """
+        添加笔记 - API 接口
+        前端通过 POST JSON 数据调用
+        """
+        data = request.get_json()
+        note_id = str(uuid.uuid4())
+        content = {
+            "note_id": note_id,
+            "title": data.get("title", ""),
+            "content": data.get("content", ""),
+            "author": data.get("author", "guest"),
+            "created_at": data.get("created_at")
+        }
+        producer.send_message("note/publish", content)
+        return jsonify({"status": "success", "note_id": note_id})
+
+    @app.route("/api/note/<note_id>/like", methods=["POST"])
+    def api_like_note(note_id):
+        """
+        点赞笔记 - API 接口
+        """
+        data = request.get_json()
+        user_id = data.get("user_id", "guest")
+        content = {"note_id": note_id, "user_id": user_id}
+        producer.send_message("note/like", content)
+        return jsonify({"status": "success"})
+
+    @app.route("/api/note/<note_id>/comment", methods=["POST"])
+    def api_comment_note(note_id):
+        """
+        评论笔记 - API 接口
+        """
+        data = request.get_json()
+        user_id = data.get("user_id", "guest")
+        comment_text = data.get("comment_text", "")
+        content = {"note_id": note_id, "user_id": user_id, "comment_text": comment_text}
+        producer.send_message("note/comment", content)
+        return jsonify({"status": "success"})
+
+    @app.route("/api/note/<note_id>", methods=["DELETE"])
+    def api_delete_note(note_id):
+        """
+        删除笔记 - API 接口
+        """
+        content = {"note_id": note_id}
+        producer.send_message("note/delete", content)
+        import time
+        time.sleep(0.1)
+        return jsonify({"status": "success"})
 
     return app
