@@ -38,7 +38,7 @@ class ComponentLogger:
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_message = f"[{timestamp}] {message}\n"
 
-        print(message)
+        # print(message)
 
         try:
             with ComponentLogger._lock:

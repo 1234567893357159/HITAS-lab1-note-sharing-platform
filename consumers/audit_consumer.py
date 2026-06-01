@@ -28,11 +28,10 @@ class AuditConsumer(MessageConsumer):
         :param host: 中间件服务器地址
         :param port: 中间件服务器端口
         """
-        super().__init__(host, port)
+        super().__init__(host, port, "audit_consumer")
         # 订阅笔记发布主题
         self.subscribe_topic("note/publish")
-        # 获取组件专属日志记录器
-        self.logger = ComponentLogger.get_logger("audit_consumer")
+        # 日志记录器已经在基类中初始化
 
     def process_message(self, message):
         """

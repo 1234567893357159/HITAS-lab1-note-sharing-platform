@@ -61,15 +61,19 @@
           │ query/request                        │ note/*
           ▼                                      ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                          消息中间件 (MiddlewareServer)                      │
+│                    消息中间件 (MiddlewareServer)                            │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                    TopicRouter (主题路由)                           │   │
-│  │  query/request → QueryConsumer                                     │   │
-│  │  note/publish  → AuditConsumer                                     │   │
-│  │  note/like     → NoticeConsumer + StatConsumer                     │   │
-│  │  note/comment  → NoticeConsumer + StatConsumer                     │   │
-│  │  note/delete   → QueryConsumer                                     │   │
+│  │                    TopicRouter (主题路由 - 观察者模式实现)           │   │
+│  │  query/request → QueryConsumer (观察者)                            │   │
+│  │  note/publish  → AuditConsumer (观察者)                            │   │
+│  │  note/like     → NoticeConsumer (观察者) + StatConsumer (观察者)    │   │
+│  │  note/comment  → NoticeConsumer (观察者) + StatConsumer (观察者)    │   │
+│  │  note/delete   → QueryConsumer (观察者)                            │   │
 │  │  query/response → 回传给 QueryClient                               │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │                    msg_queue (统一消息队列)                         │   │
+│  │  所有消息（事件和查询）都进入同一个队列，由单一分发线程处理          │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────────────┘
           │                                      │
@@ -128,15 +132,16 @@
 1. TCP Socket 监听（端口 5001）
 2. 接收客户端连接（生产者、消费者、查询客户端）
 3. 解析消息类型并路由
-4. 管理消息队列和查询队列
+4. 管理统一消息队列
 5. 维护主题订阅关系
+6. 实现观察者模式：主题为被观察者，消费者为观察者
 ```
 
 **消息处理逻辑**：
 
 | 消息类型 | 处理方式 | 目标队列 |
 |----------|----------|----------|
-| `query` | 查询请求 | query_queue |
+| `query` | 查询请求 | msg_queue |
 | `subscribe` | 订阅注册 | TopicRouter |
 | `publish` | 事件发布 | msg_queue |
 
@@ -173,52 +178,93 @@
 #### 2.1.4 主题路由（TopicRouter）
 
 ```python
-# 核心数据结构
+# 核心数据结构 - 实现观察者模式的订阅管理
 subscribers = {
-    "note/publish": [socket1, socket2],
-    "note/like": [socket3],
-    "query/request": [socket4]
+    "note/publish": [socket1, socket2],  # AuditConsumer订阅
+    "note/like": [socket3, socket4],     # NoticeConsumer + StatConsumer订阅
+    "note/comment": [socket3, socket4],  # NoticeConsumer + StatConsumer订阅
+    "query/request": [socket5]           # QueryConsumer订阅
 }
 
 # 核心方法
-- subscribe(topic, socket): 订阅主题
-- unsubscribe(topic, socket): 取消订阅
-- get_subscribers(topic): 获取主题订阅者列表
+- subscribe(topic, socket): 添加观察者（消费者订阅主题）
+- unsubscribe(topic, socket): 移除观察者（消费者取消订阅）
+- get_subscribers(topic): 获取订阅该主题的所有观察者（消费者）
+- notify_observers(topic, message): 通知所有观察者（分发消息）
 ```
 
-### 2.2 消息分发机制
+### 2.2 观察者模式的实现
 
-#### 2.2.1 分发流程
+#### 2.2.1 角色映射
+
+| 观察者模式概念 | 消息中间件实现 |
+|---------------|---------------|
+| **被观察者（Subject）** | **主题（Topic）** |
+| **观察者（Observer）** | **消费者（Consumer）** |
+| **添加观察者** | **消费者订阅主题（subscribe_topic）** |
+| **通知观察者** | **中间件向消费者推送消息** |
+
+#### 2.2.2 观察者模式流程
 
 ```
-消息入队 → 分发线程轮询 → 获取订阅者列表 → 广播消息
+1. 消费者启动并连接中间件 → 2. 消费者订阅特定主题 → 3. 生产者发布消息 → 4. 中间件通知所有订阅者 → 5. 消费者处理消息
+      │                           │                        │                        │                          │
+      ▼                           ▼                        ▼                        ▼                          ▼
+  connect()                  subscribe()            send_message()        notify_observers()        process_message()
+```
+
+#### 2.2.3 消息分发机制
+
+```
+消息入队 → 分发线程轮询 → 获取订阅者列表 → 广播消息给所有观察者
      │           │                  │              │
      ▼           ▼                  ▼              ▼
  msg_queue  dispatch_messages()  get_subscribers()  sendall()
 ```
 
-#### 2.2.2 双队列设计
+#### 2.2.4 单队列设计
 
 | 队列 | 用途 | 分发线程 |
 |------|------|----------|
-| `msg_queue` | 处理事件消息（发布、点赞、评论、删除） | `dispatch_messages` |
-| `query_queue` | 处理查询请求 | `dispatch_queries` |
+| `msg_queue` | 处理所有消息（事件消息和查询请求） | `dispatch_messages` |
 
 **设计原因**：
-- 查询请求需要更高的响应优先级
-- 分离事件处理和查询处理，避免相互阻塞
-- 便于独立调整处理策略
+- 统一消息处理，简化架构
+- 降低系统复杂度
+- 避免队列间协调的复杂性
 
 ### 2.3 支持的消息主题
 
-| 主题 | 生产者 | 消费者 | 消息结构 |
-|------|--------|--------|----------|
-| `note/publish` | Flask | AuditConsumer | `{note_id, title, content, author, created_at}` |
-| `note/like` | Flask | NoticeConsumer, StatConsumer | `{note_id, user_id}` |
-| `note/comment` | Flask | NoticeConsumer, StatConsumer | `{note_id, user_id, comment_text}` |
-| `note/delete` | Flask | QueryConsumer | `{note_id}` |
-| `query/request` | QueryClient | QueryConsumer | `{query_id, query_type, params}` |
-| `query/response` | QueryConsumer | QueryClient | `{query_id, status, data}` |
+| 主题 | 生产者 | 消费者（观察者） | 消息结构 | 业务含义 |
+|------|--------|------------------|----------|----------|
+| `note/publish` | Flask | AuditConsumer | `{note_id, title, content, author, created_at}` | 发布新笔记 |
+| `note/like` | Flask | NoticeConsumer, StatConsumer | `{note_id, user_id}` | 用户点赞 |
+| `note/comment` | Flask | NoticeConsumer, StatConsumer | `{note_id, user_id, comment_text}` | 用户评论 |
+| `note/delete` | Flask | QueryConsumer | `{note_id}` | 删除笔记 |
+| `query/request` | QueryClient | QueryConsumer | `{query_id, query_type, params}` | 查询请求 |
+| `query/response` | QueryConsumer | QueryClient | `{query_id, status, data}` | 查询响应 |
+
+### 2.4 消费者作为观察者的职责
+
+#### 2.4.1 AuditConsumer（审核消费者）
+- **观察主题**: `note/publish`
+- **观察者行为**: 接收笔记发布事件，验证并保存到数据库
+- **业务逻辑**: 审核并保存新发布的笔记
+
+#### 2.4.2 NoticeConsumer（通知消费者）
+- **观察主题**: `note/like`, `note/comment`, `note/delete`
+- **观察者行为**: 接收用户互动事件，处理通知和计数
+- **业务逻辑**: 处理点赞、评论和删除事件
+
+#### 2.4.3 StatConsumer（统计消费者）
+- **观察主题**: `note/like`, `note/comment`
+- **观察者行为**: 接收互动事件，更新统计信息
+- **业务逻辑**: 更新笔记热度分数
+
+#### 2.4.4 QueryConsumer（查询消费者）
+- **观察主题**: `query/request`, `note/delete`
+- **观察者行为**: 接收查询请求，执行数据库操作
+- **业务逻辑**: 执行数据库查询和删除操作
 
 ---
 
@@ -228,11 +274,14 @@ subscribers = {
 
 ```python
 # 通用功能
+- __init__(host, port, component_name): 初始化消费者，包含日志记录器
 - connect(): 建立与中间件的 TCP 连接
 - subscribe_topic(topic): 订阅指定主题
 - start_listening(): 启动消息监听线程
 - receive_message(): 接收并解析消息（处理 TCP 粘包）
 - process_message(message): 处理消息（子类实现）
+- close(): 关闭连接并清理资源
+- logger: 日志记录器，用于记录连接、订阅、消息处理等事件
 ```
 
 ### 3.2 各消费者职责
@@ -244,18 +293,22 @@ subscribers = {
   2. 验证笔记内容
   3. 保存到 `notes` 表
   4. 记录发布日志到 `publish_logs` 表
+- **日志记录**: 记录连接状态、消息接收、处理结果等信息
 
 #### NoticeConsumer（通知消费者）
-- **订阅主题**: `note/like`, `note/comment`
+- **订阅主题**: `note/like`, `note/comment`, `note/delete`
 - **职责**:
   1. **点赞**: 调用 `add_like()` + 更新笔记点赞数
   2. **评论**: 调用 `add_comment()` + 更新笔记评论数
+  3. **删除**: 调用 `delete_note()` 删除笔记记录
+- **日志记录**: 记录互动事件处理过程、通知生成等信息
 
 #### StatConsumer（统计消费者）
 - **订阅主题**: `note/like`, `note/comment`
 - **职责**:
   1. **点赞**: 热度 +2
   2. **评论**: 热度 +3
+- **日志记录**: 记录热度更新过程、统计数据变化等信息
 
 #### QueryConsumer（查询消费者）
 - **订阅主题**: `query/request`, `note/delete`
@@ -266,6 +319,7 @@ subscribers = {
   | `get_note` | 获取单条笔记 | `{note_id}` |
   | `get_comments` | 获取评论列表 | `{note_id}` |
   | `get_like_count` | 获取点赞数 | `{note_id}` |
+- **日志记录**: 记录查询请求处理、数据库操作、响应发送等信息
 
 ---
 

@@ -27,14 +27,13 @@ class StatConsumer(MessageConsumer):
         :param host: 中间件服务器地址
         :param port: 中间件服务器端口
         """
-        super().__init__(host, port)
-        # 获取组件专属日志记录器
-        self.logger = ComponentLogger.get_logger("stat_consumer")
+        super().__init__(host, port, "stat_consumer")
         # 订阅点赞和评论主题（实际向中间件发送订阅请求）
         self.subscribe_topic("note/like")
         self.subscribe_topic("note/comment")
         # 记录已订阅的主题列表
         self.subscribed_topics = ['note/like', 'note/comment']
+        # 日志记录器已经在基类中初始化
 
     def process_message(self, message):
         """

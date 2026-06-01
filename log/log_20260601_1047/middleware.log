@@ -1,0 +1,72 @@
+[2026-06-01 10:47:05] [Middleware] 服务已启动 127.0.0.1:5001
+[2026-06-01 10:47:05] [Middleware] 新节点加入: ('127.0.0.1', 63679)
+[2026-06-01 10:47:05] [Middleware] 新节点加入: ('127.0.0.1', 63680)
+[2026-06-01 10:47:05] [Middleware] 新节点加入: ('127.0.0.1', 63681)
+[2026-06-01 10:47:05] [Middleware] 新节点加入: ('127.0.0.1', 63682)
+[2026-06-01 10:47:05] [Middleware] 新节点加入: ('127.0.0.1', 63683)
+[2026-06-01 10:47:15] [Middleware] 服务已启动 127.0.0.1:5001
+[2026-06-01 10:47:15] [Middleware] 新节点加入: ('127.0.0.1', 63702)
+[2026-06-01 10:47:15] [Middleware] 新节点加入: ('127.0.0.1', 63703)
+[2026-06-01 10:47:15] [Middleware] 新节点加入: ('127.0.0.1', 63704)
+[2026-06-01 10:47:15] [Middleware] 新节点加入: ('127.0.0.1', 63705)
+[2026-06-01 10:47:15] [Middleware] 新节点加入: ('127.0.0.1', 63706)
+[2026-06-01 10:47:25] [Middleware] 服务已启动 127.0.0.1:5001
+[2026-06-01 10:47:25] [Middleware] 新节点加入: ('127.0.0.1', 63748)
+[2026-06-01 10:47:25] [Middleware] 新节点加入: ('127.0.0.1', 63749)
+[2026-06-01 10:47:25] [Middleware] 新节点加入: ('127.0.0.1', 63750)
+[2026-06-01 10:47:25] [Middleware] 新节点加入: ('127.0.0.1', 63751)
+[2026-06-01 10:47:25] [Middleware] 新节点加入: ('127.0.0.1', 63752)
+[2026-06-01 10:47:36] [Middleware] 服务已启动 127.0.0.1:5001
+[2026-06-01 10:47:36] [Middleware] 新节点加入: ('127.0.0.1', 63788)
+[2026-06-01 10:47:36] [Middleware] 新节点加入: ('127.0.0.1', 63789)
+[2026-06-01 10:47:36] [Middleware] 新节点加入: ('127.0.0.1', 63790)
+[2026-06-01 10:47:36] [Middleware] 新节点加入: ('127.0.0.1', 63791)
+[2026-06-01 10:47:36] [Middleware] 新节点加入: ('127.0.0.1', 63792)
+[2026-06-01 10:49:02] [Middleware] 新节点加入: ('127.0.0.1', 59973)
+[2026-06-01 10:49:02] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:02] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:02] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:02] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:02] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:02] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:04] [Middleware] 新节点加入: ('127.0.0.1', 50199)
+[2026-06-01 10:49:04] [Middleware] 发送消息类型: note/like 给 2 个订阅者
+[2026-06-01 10:49:04] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:04] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:04] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:04] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:04] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:04] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:05] [Middleware] 发送消息类型: note/like 给 2 个订阅者
+[2026-06-01 10:49:06] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:06] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:06] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:06] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:06] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:06] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:28] [Middleware] 发送消息类型: note/comment 给 2 个订阅者
+[2026-06-01 10:49:29] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:29] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:29] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:29] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:29] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:29] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:35] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:35] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:37] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:37] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:37] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:37] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:37] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:37] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:40] [Middleware] 发送消息类型: note/like 给 2 个订阅者
+[2026-06-01 10:49:40] [Middleware] 发送消息类型: note/like 给 2 个订阅者
+[2026-06-01 10:49:40] [Middleware] 发送消息类型: note/like 给 2 个订阅者
+[2026-06-01 10:49:41] [Middleware] 发送消息类型: note/like 给 2 个订阅者
+[2026-06-01 10:49:41] [Middleware] 发送消息类型: note/like 给 2 个订阅者
+[2026-06-01 10:49:41] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:41] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:41] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:41] [Middleware] 发送消息类型: query/response 给 1 个订阅者
+[2026-06-01 10:49:41] [Middleware] 发送消息类型: query/request 给 1 个订阅者
+[2026-06-01 10:49:41] [Middleware] 发送消息类型: query/response 给 1 个订阅者

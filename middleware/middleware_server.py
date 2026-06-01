@@ -46,12 +46,10 @@ class MiddlewareServer:
         self.host = host                        # 监听地址
         self.port = port                        # 监听端口
         self.server_socket = None               # 服务器 socket
-        self.msg_queue = MessageQueue()         # 普通消息队列
-        self.query_queue = MessageQueue()       # 查询消息队列
+        self.msg_queue = MessageQueue()         # 统一消息队列
         self.router = TopicRouter()             # 主题路由器
         self.is_running = False                 # 运行状态标志
         self.dispatcher_thread = None           # 消息分发线程
-        self.query_dispatcher_thread = None     # 查询分发线程
         self.logger = ComponentLogger.get_logger("middleware")  # 日志记录器
         self.traffic_monitor = TrafficMonitor()  # 流量监控器
         self.traffic_monitor.initialize()
@@ -77,13 +75,9 @@ class MiddlewareServer:
         accept_thread = threading.Thread(target=self.accept_connections, daemon=True)
         accept_thread.start()
 
-        # 启动普通消息分发线程
+        # 启动统一消息分发线程
         self.dispatcher_thread = threading.Thread(target=self.dispatch_messages, daemon=True)
         self.dispatcher_thread.start()
-
-        # 启动查询消息分发线程
-        self.query_dispatcher_thread = threading.Thread(target=self.dispatch_queries, daemon=True)
-        self.query_dispatcher_thread.start()
 
         self.logger.log(f"[Middleware] 服务已启动 {self.host}:{self.port}")
 
@@ -145,7 +139,7 @@ class MiddlewareServer:
                             "query_type": query_type,
                             "params": params
                         }
-                        self.query_queue.put_message(Message("query/request", query_msg))
+                        self.msg_queue.put_message(Message("query/request", query_msg))
                         self.traffic_monitor.record_query_received(query_type)
                     
                     elif msg_type == "subscribe":
@@ -163,9 +157,9 @@ class MiddlewareServer:
 
     def dispatch_messages(self):
         """
-        分发普通消息
+        分发所有类型的消息
         
-        从消息队列获取消息，路由到所有订阅者
+        从统一消息队列获取消息，路由到所有订阅者
         """
         while self.is_running:
             # 记录队列深度
@@ -175,26 +169,11 @@ class MiddlewareServer:
             if message:
                 subscribers = self.router.get_subscribers(message.topic)
                 self.send_to_consumers(subscribers, message)
-                self.traffic_monitor.record_message_dispatched(message.topic, message.message_id)
-            else:
-                time.sleep(0.05)
-
-    def dispatch_queries(self):
-        """
-        分发查询请求
-        
-        从查询队列获取查询请求，路由到订阅了 query/request 的消费者
-        """
-        while self.is_running:
-            # 记录查询队列深度
-            self.traffic_monitor.record_queue_depth(len(self.query_queue.queue))
-            
-            message = self.query_queue.get_message()
-            if message:
-                subscribers = self.router.get_subscribers(message.topic)
-                self.send_to_consumers(subscribers, message)
-                query_type = message.content.get("query_type", "unknown")
-                self.traffic_monitor.record_query_dispatched(query_type)
+                if message.topic.startswith("query/"):
+                    query_type = message.content.get("query_type", "unknown")
+                    self.traffic_monitor.record_query_dispatched(query_type)
+                else:
+                    self.traffic_monitor.record_message_dispatched(message.topic, message.message_id)
             else:
                 time.sleep(0.05)
 

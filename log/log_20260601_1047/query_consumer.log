@@ -1,0 +1,85 @@
+[2026-06-01 10:47:05] [query_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:47:05] [query_consumer] 已订阅主题: query/request
+[2026-06-01 10:47:05] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:05] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:05] [query_consumer] 主题 query/request 已订阅，跳过重复订阅
+[2026-06-01 10:47:05] [query_consumer] 开始接收消息...
+[2026-06-01 10:47:05] [query_consumer] 消息监听线程已启动
+[2026-06-01 10:47:15] [query_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:47:15] [query_consumer] 已订阅主题: query/request
+[2026-06-01 10:47:15] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:15] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:15] [query_consumer] 主题 query/request 已订阅，跳过重复订阅
+[2026-06-01 10:47:15] [query_consumer] 开始接收消息...
+[2026-06-01 10:47:15] [query_consumer] 消息监听线程已启动
+[2026-06-01 10:47:25] [query_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:47:25] [query_consumer] 已订阅主题: query/request
+[2026-06-01 10:47:25] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:25] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:25] [query_consumer] 主题 query/request 已订阅，跳过重复订阅
+[2026-06-01 10:47:25] [query_consumer] 开始接收消息...
+[2026-06-01 10:47:25] [query_consumer] 消息监听线程已启动
+[2026-06-01 10:47:36] [query_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:47:36] [query_consumer] 已订阅主题: query/request
+[2026-06-01 10:47:36] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:36] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:36] [query_consumer] 主题 query/request 已订阅，跳过重复订阅
+[2026-06-01 10:47:36] [query_consumer] 开始接收消息...
+[2026-06-01 10:47:36] [query_consumer] 消息监听线程已启动
+[2026-06-01 10:49:02] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:02] [QueryConsumer] 处理查询请求 - ID: 1780282142.2287798, 类型: get_note
+[2026-06-01 10:49:02] [QueryConsumer] 查询完成 - ID: 1780282142.2287798, 状态: success
+[2026-06-01 10:49:02] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:02] [QueryConsumer] 处理查询请求 - ID: 1780282142.4446843, 类型: get_comments
+[2026-06-01 10:49:02] [QueryConsumer] 查询完成 - ID: 1780282142.4446843, 状态: success
+[2026-06-01 10:49:02] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:02] [QueryConsumer] 处理查询请求 - ID: 1780282142.6508799, 类型: get_like_count
+[2026-06-01 10:49:02] [QueryConsumer] 查询完成 - ID: 1780282142.6508799, 状态: success
+[2026-06-01 10:49:04] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:04] [QueryConsumer] 处理查询请求 - ID: 1780282144.5722344, 类型: get_note
+[2026-06-01 10:49:04] [QueryConsumer] 查询完成 - ID: 1780282144.5722344, 状态: success
+[2026-06-01 10:49:04] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:04] [QueryConsumer] 处理查询请求 - ID: 1780282144.682338, 类型: get_comments
+[2026-06-01 10:49:04] [QueryConsumer] 查询完成 - ID: 1780282144.682338, 状态: success
+[2026-06-01 10:49:04] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:04] [QueryConsumer] 处理查询请求 - ID: 1780282144.7861314, 类型: get_like_count
+[2026-06-01 10:49:04] [QueryConsumer] 查询完成 - ID: 1780282144.7861314, 状态: success
+[2026-06-01 10:49:06] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:06] [QueryConsumer] 处理查询请求 - ID: 1780282146.0643857, 类型: get_note
+[2026-06-01 10:49:06] [QueryConsumer] 查询完成 - ID: 1780282146.0643857, 状态: success
+[2026-06-01 10:49:06] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:06] [QueryConsumer] 处理查询请求 - ID: 1780282146.1683824, 类型: get_comments
+[2026-06-01 10:49:06] [QueryConsumer] 查询完成 - ID: 1780282146.1683824, 状态: success
+[2026-06-01 10:49:06] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:06] [QueryConsumer] 处理查询请求 - ID: 1780282146.2766924, 类型: get_like_count
+[2026-06-01 10:49:06] [QueryConsumer] 查询完成 - ID: 1780282146.2766924, 状态: success
+[2026-06-01 10:49:29] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:29] [QueryConsumer] 处理查询请求 - ID: 1780282169.1005042, 类型: get_note
+[2026-06-01 10:49:29] [QueryConsumer] 查询完成 - ID: 1780282169.1005042, 状态: success
+[2026-06-01 10:49:29] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:29] [QueryConsumer] 处理查询请求 - ID: 1780282169.2045171, 类型: get_comments
+[2026-06-01 10:49:29] [QueryConsumer] 查询完成 - ID: 1780282169.2045171, 状态: success
+[2026-06-01 10:49:29] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:29] [QueryConsumer] 处理查询请求 - ID: 1780282169.3111176, 类型: get_like_count
+[2026-06-01 10:49:29] [QueryConsumer] 查询完成 - ID: 1780282169.3111176, 状态: success
+[2026-06-01 10:49:35] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:35] [QueryConsumer] 处理查询请求 - ID: 1780282175.4435232, 类型: get_notes
+[2026-06-01 10:49:35] [QueryConsumer] 查询完成 - ID: 1780282175.4435232, 状态: success
+[2026-06-01 10:49:37] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:37] [QueryConsumer] 处理查询请求 - ID: 1780282176.971797, 类型: get_note
+[2026-06-01 10:49:37] [QueryConsumer] 查询完成 - ID: 1780282176.971797, 状态: success
+[2026-06-01 10:49:37] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:37] [QueryConsumer] 处理查询请求 - ID: 1780282177.0769556, 类型: get_comments
+[2026-06-01 10:49:37] [QueryConsumer] 查询完成 - ID: 1780282177.0769556, 状态: success
+[2026-06-01 10:49:37] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:37] [QueryConsumer] 处理查询请求 - ID: 1780282177.282878, 类型: get_like_count
+[2026-06-01 10:49:37] [QueryConsumer] 查询完成 - ID: 1780282177.282878, 状态: success
+[2026-06-01 10:49:41] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:41] [QueryConsumer] 处理查询请求 - ID: 1780282181.3156416, 类型: get_note
+[2026-06-01 10:49:41] [QueryConsumer] 查询完成 - ID: 1780282181.3156416, 状态: success
+[2026-06-01 10:49:41] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:41] [QueryConsumer] 处理查询请求 - ID: 1780282181.4223552, 类型: get_comments
+[2026-06-01 10:49:41] [QueryConsumer] 查询完成 - ID: 1780282181.4223552, 状态: success
+[2026-06-01 10:49:41] [query_consumer] 接收到消息 - 主题: query/request
+[2026-06-01 10:49:41] [QueryConsumer] 处理查询请求 - ID: 1780282181.5442116, 类型: get_like_count
+[2026-06-01 10:49:41] [QueryConsumer] 查询完成 - ID: 1780282181.5442116, 状态: success

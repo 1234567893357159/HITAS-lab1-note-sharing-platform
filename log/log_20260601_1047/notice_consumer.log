@@ -1,0 +1,68 @@
+[2026-06-01 10:47:05] [notice_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:47:05] [notice_consumer] 已订阅主题: note/like
+[2026-06-01 10:47:05] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:05] [notice_consumer] 已订阅主题: note/comment
+[2026-06-01 10:47:05] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:05] [notice_consumer] 已订阅主题: note/delete
+[2026-06-01 10:47:05] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:05] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:05] [notice_consumer] 主题 note/like 已订阅，跳过重复订阅
+[2026-06-01 10:47:05] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:05] [notice_consumer] 主题 note/comment 已订阅，跳过重复订阅
+[2026-06-01 10:47:05] [notice_consumer] 开始接收消息...
+[2026-06-01 10:47:05] [notice_consumer] 消息监听线程已启动
+[2026-06-01 10:47:15] [notice_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:47:15] [notice_consumer] 已订阅主题: note/like
+[2026-06-01 10:47:15] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:15] [notice_consumer] 已订阅主题: note/comment
+[2026-06-01 10:47:15] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:15] [notice_consumer] 已订阅主题: note/delete
+[2026-06-01 10:47:15] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:15] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:15] [notice_consumer] 主题 note/like 已订阅，跳过重复订阅
+[2026-06-01 10:47:15] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:15] [notice_consumer] 主题 note/comment 已订阅，跳过重复订阅
+[2026-06-01 10:47:15] [notice_consumer] 开始接收消息...
+[2026-06-01 10:47:15] [notice_consumer] 消息监听线程已启动
+[2026-06-01 10:47:25] [notice_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:47:25] [notice_consumer] 已订阅主题: note/like
+[2026-06-01 10:47:25] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:25] [notice_consumer] 已订阅主题: note/comment
+[2026-06-01 10:47:25] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:25] [notice_consumer] 已订阅主题: note/delete
+[2026-06-01 10:47:25] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:25] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:25] [notice_consumer] 主题 note/like 已订阅，跳过重复订阅
+[2026-06-01 10:47:25] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:25] [notice_consumer] 主题 note/comment 已订阅，跳过重复订阅
+[2026-06-01 10:47:25] [notice_consumer] 开始接收消息...
+[2026-06-01 10:47:25] [notice_consumer] 消息监听线程已启动
+[2026-06-01 10:47:36] [notice_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:47:36] [notice_consumer] 已订阅主题: note/like
+[2026-06-01 10:47:36] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:36] [notice_consumer] 已订阅主题: note/comment
+[2026-06-01 10:47:36] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:36] [notice_consumer] 已订阅主题: note/delete
+[2026-06-01 10:47:36] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:36] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:36] [notice_consumer] 主题 note/like 已订阅，跳过重复订阅
+[2026-06-01 10:47:36] [notice_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:47:36] [notice_consumer] 主题 note/comment 已订阅，跳过重复订阅
+[2026-06-01 10:47:36] [notice_consumer] 开始接收消息...
+[2026-06-01 10:47:36] [notice_consumer] 消息监听线程已启动
+[2026-06-01 10:49:04] [notice_consumer] 接收到消息 - 主题: note/like
+[2026-06-01 10:49:04] [NoticeConsumer] 已处理点赞 - 笔记ID: 4cbd6681-8b0d-4de1-ada9-9bf2900a8573, 用户ID: guest
+[2026-06-01 10:49:05] [notice_consumer] 接收到消息 - 主题: note/like
+[2026-06-01 10:49:05] [NoticeConsumer] 已处理点赞 - 笔记ID: 4cbd6681-8b0d-4de1-ada9-9bf2900a8573, 用户ID: guest
+[2026-06-01 10:49:28] [notice_consumer] 接收到消息 - 主题: note/comment
+[2026-06-01 10:49:28] [NoticeConsumer] 已处理评论 - 笔记ID: 4cbd6681-8b0d-4de1-ada9-9bf2900a8573, 用户ID: guest
+[2026-06-01 10:49:40] [notice_consumer] 接收到消息 - 主题: note/like
+[2026-06-01 10:49:40] [NoticeConsumer] 已处理点赞 - 笔记ID: 2f396c90-3efe-4a5c-8fb1-816d4b4b60ab, 用户ID: guest
+[2026-06-01 10:49:40] [notice_consumer] 接收到消息 - 主题: note/like
+[2026-06-01 10:49:40] [NoticeConsumer] 已处理点赞 - 笔记ID: 2f396c90-3efe-4a5c-8fb1-816d4b4b60ab, 用户ID: guest
+[2026-06-01 10:49:40] [notice_consumer] 接收到消息 - 主题: note/like
+[2026-06-01 10:49:41] [NoticeConsumer] 已处理点赞 - 笔记ID: 2f396c90-3efe-4a5c-8fb1-816d4b4b60ab, 用户ID: guest
+[2026-06-01 10:49:41] [notice_consumer] 接收到消息 - 主题: note/like
+[2026-06-01 10:49:41] [NoticeConsumer] 已处理点赞 - 笔记ID: 2f396c90-3efe-4a5c-8fb1-816d4b4b60ab, 用户ID: guest
+[2026-06-01 10:49:41] [notice_consumer] 接收到消息 - 主题: note/like
+[2026-06-01 10:49:41] [NoticeConsumer] 已处理点赞 - 笔记ID: 2f396c90-3efe-4a5c-8fb1-816d4b4b60ab, 用户ID: guest

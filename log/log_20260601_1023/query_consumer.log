@@ -1,0 +1,7 @@
+[2026-06-01 10:23:56] [query_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:23:56] [query_consumer] 已订阅主题: query/request
+[2026-06-01 10:23:56] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:23:56] [query_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:23:56] [query_consumer] 主题 query/request 已订阅，跳过重复订阅
+[2026-06-01 10:23:56] [query_consumer] 开始接收消息...
+[2026-06-01 10:23:56] [query_consumer] 消息监听线程已启动

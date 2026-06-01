@@ -4,14 +4,14 @@
 ## 1. 测试环境
 - 操作系统: Windows
 - Python版本: 3.12
-- 测试时间: 2026-06-01 00:10:09
+- 测试时间: 2026-06-01 10:30:19
 
 ## 2. 测试结果汇总
 - 总测试数: 8
 - 通过数: 8
 - 失败数: 0
 - 通过率: 100.0%
-- 总耗时: 63.42 秒
+- 总耗时: 62.59 秒
 
 ## 3. 详细测试结果
 
@@ -96,12 +96,12 @@ Pass rate: 6/6 (100.0%)
 ```
 Test Results
 Query count: 100
-Avg response time: 130.27 ms
-Min response time: 100.21 ms
-Max response time: 226.01 ms
-P50 response time: 110.40 ms
-P95 response time: 221.02 ms
-P99 response time: 226.01 ms
+Avg response time: 115.61 ms
+Min response time: 102.44 ms
+Max response time: 219.87 ms
+P50 response time: 112.17 ms
+P95 response time: 126.04 ms
+P99 response time: 219.87 ms
 ```
 
 ### 6. 并发测试
@@ -111,24 +111,24 @@ P99 response time: 226.01 ms
 **测试详情**:
 
 ```
-Thread 9: Avg response time 122.43 ms
-Thread 2: Avg response time 133.46 ms
-Thread 0: Avg response time 134.53 ms
-Thread 5: Avg response time 134.43 ms
-Thread 8: Avg response time 154.16 ms
-Thread 3: Avg response time 154.30 ms
-Thread 1: Avg response time 155.09 ms
-Thread 6: Avg response time 154.99 ms
-Thread 4: Avg response time 155.09 ms
-Thread 7: Avg response time 166.64 ms
+Thread 0: Avg response time 135.37 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 5: Avg response time 145.76 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 9: Avg response time 145.97 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 4: Avg response time 147.69 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 7: Avg response time 147.87 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 2: Avg response time 154.85 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 6: Avg response time 159.59 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 1: Avg response time 160.21 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 8: Avg response time 159.79 ms for ['get_notes', 'get_like_count', 'get_comments']
+Thread 3: Avg response time 166.89 ms for ['get_notes', 'get_like_count', 'get_comments']
 Test Results
 Thread count: 10
 Total queries: 100
-Total time: 1.67 seconds
-System throughput: 59.82 queries/sec
-Avg response time: 146.51 ms
-Max response time: 166.64 ms
-Min response time: 122.43 ms
+Total time: 1.68 seconds
+System throughput: 59.42 queries/sec
+Avg response time: 152.40 ms
+Max response time: 166.89 ms
+Min response time: 135.37 ms
 ```
 
 ### 7. 吞吐率测试
@@ -138,11 +138,11 @@ Min response time: 122.43 ms
 **测试详情**:
 
 ```
-Throughput Test - 1000 messages
+Throughput Test - 1000 messages, types: ['like', 'publish', 'comment']
 Test Results
 Messages sent: 1000
-Total time: 0.05 seconds
-Throughput: 21622.80 messages/sec
+Total time: 0.07 seconds
+Throughput: 14732.98 messages/sec
 ```
 
 ### 8. 压力测试
@@ -154,22 +154,22 @@ Throughput: 21622.80 messages/sec
 ```
 Test Results
 Total messages: 2000
-Total time: 0.53 seconds
-Throughput: 3744.77 messages/sec
+Total time: 0.57 seconds
+Throughput: 3509.51 messages/sec
 ```
 
 ## 4. 性能指标总结
 
 | 测试类型 | 指标 | 数值 |
 |---------|------|------|
-| 查询响应时间测试 | 平均响应时间 | 130.27 ms |
-| 查询响应时间测试 | P95响应时间 | 221.02 ms |
-| 并发测试 | 系统吞吐率 | 59.82 queries/sec |
-| 并发测试 | 平均响应时间 | 146.51 ms |
-| 吞吐率测试 | 吞吐率 | 21622.80 messages/sec |
-| 吞吐率测试 | 平均延迟 | 0.05 ms |
+| 查询响应时间测试 | 平均响应时间 | 115.61 ms |
+| 查询响应时间测试 | P95响应时间 | 126.04 ms |
+| 并发测试 | 系统吞吐率 | 59.42 queries/sec |
+| 并发测试 | 平均响应时间 | 152.40 ms |
+| 吞吐率测试 | 吞吐率 | 14732.98 messages/sec |
+| 吞吐率测试 | 平均延迟 | 0.07 ms |
 | 压力测试 | 总消息数 | 2000 |
-| 压力测试 | 吞吐率 | 3744.77 messages/sec |
+| 压力测试 | 吞吐率 | 3509.51 messages/sec |
 
 
 ## 5. 结论

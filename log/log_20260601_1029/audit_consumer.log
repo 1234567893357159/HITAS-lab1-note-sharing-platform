@@ -1,0 +1,20 @@
+[2026-06-01 10:29:00] [audit_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:29:00] [audit_consumer] 已订阅主题: note/publish
+[2026-06-01 10:29:00] [audit_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:29:00] [audit_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:29:00] [audit_consumer] 主题 note/publish 已订阅，跳过重复订阅
+[2026-06-01 10:29:00] [audit_consumer] 开始接收消息...
+[2026-06-01 10:29:00] [audit_consumer] 消息监听线程已启动
+[2026-06-01 10:29:02] [audit_consumer] 已连接到中间件 127.0.0.1:5001
+[2026-06-01 10:29:02] [audit_consumer] 已订阅主题: note/publish
+[2026-06-01 10:29:02] [audit_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:29:02] [audit_consumer] 已存在连接，跳过连接建立
+[2026-06-01 10:29:02] [audit_consumer] 主题 note/publish 已订阅，跳过重复订阅
+[2026-06-01 10:29:02] [audit_consumer] 开始接收消息...
+[2026-06-01 10:29:02] [audit_consumer] 消息监听线程已启动
+[2026-06-01 10:29:23] [audit_consumer] 接收到消息 - 主题: note/publish
+[2026-06-01 10:29:23] [audit_consumer] 接收消息时发生错误: 'note_id'
+[2026-06-01 10:29:23] [audit_consumer] 停止接收消息，准备关闭连接
+[2026-06-01 10:29:23] [audit_consumer] 开始关闭连接...
+[2026-06-01 10:29:23] [audit_consumer] 连接已关闭
+[2026-06-01 10:29:23] [audit_consumer] 连接关闭完成
